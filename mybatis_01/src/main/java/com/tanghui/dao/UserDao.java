@@ -19,7 +19,7 @@ public interface UserDao {
     /**
      * 根据ID查询数据
      *
-     * @param id
+     * @param id int
      * @return User
      */
     User getUserById(int id);
@@ -27,7 +27,7 @@ public interface UserDao {
     /**
      * 插入数据
      *
-     * @param user
+     * @param user User
      * @return User
      */
     int addUser(User user);
@@ -35,7 +35,7 @@ public interface UserDao {
     /**
      * 修改数据
      *
-     * @param user
+     * @param user User
      * @return int
      */
     int updateUser(User user);
@@ -43,15 +43,15 @@ public interface UserDao {
     /**
      * 根据ID删除数据
      *
-     * @param id
+     * @param id int
      * @return int
      */
     int deleteUser(int id);
 
     /**
-     * fetch data by rule id
+     * 通过Map传入参数
      *
-     * @param map
+     * @param map Map
      * @return User
      */
     User getUserByIdMap(Map<String, Object> map);
@@ -59,7 +59,7 @@ public interface UserDao {
     /**
      * 模糊查询数据
      *
-     * @param value
+     * @param value String
      * @return List<User>
      */
     List<User> getUserLike(String value);
