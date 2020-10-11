@@ -2,7 +2,7 @@ package com.tanghui.model;
 
 /**
  * @author 唐煇
- * @Description
+ * @Description User类
  * @Date 2020-10-11 15:56
  */
 public class User {
