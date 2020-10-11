@@ -5,7 +5,9 @@ import com.tanghui.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 唐煇
@@ -93,6 +95,37 @@ public class UserDaoTest {
         }
         // 提交事务
         sqlSession.commit();
+        // 关闭SqlSession
+        sqlSession.close();
+    }
+
+    @Test
+    public void getUserByIdMap() {
+        //获取SqlSession
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        // 执行Sql
+        UserDao userDao = sqlSession.getMapper(UserDao.class);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("user_id", 3);
+        map.put("user_name", "王五");
+        User user = userDao.getUserByIdMap(map);
+        System.out.println(user);
+        // 关闭SqlSession
+        sqlSession.close();
+    }
+
+    @Test
+    public void getUserLike() {
+        //获取SqlSession
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        // 执行Sql
+        UserDao userDao = sqlSession.getMapper(UserDao.class);
+
+        List<User> users = userDao.getUserLike("%三%");
+        for (User user : users) {
+            System.out.println(user);
+        }
         // 关闭SqlSession
         sqlSession.close();
     }

@@ -18,7 +18,16 @@
     <update id="updateUser" parameterType="com.tanghui.model.User">
         update user set name =#{name},pwd=#{pwd} where id=#{id}
     </update>
+
     <delete id="deleteUser" parameterType="int">
         delete from user where id=#{id}
     </delete>
+
+    <select id="getUserByIdMap" parameterType="map" resultType="com.tanghui.model.User">
+        select * from user where id= #{user_id} and name=#{user_name};
+    </select>
+
+    <select id="getUserLike" resultType="com.tanghui.model.User">
+        select * from user where name like #{value};
+    </select>
 </mapper>
