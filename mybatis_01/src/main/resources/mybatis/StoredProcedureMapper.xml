@@ -13,4 +13,38 @@
     <insert id="addUser" parameterMap="user" statementType="CALLABLE">
         CALL adduser(?,?,?,?,?)
     </insert>
+
+    <parameterMap type="map" id="query">
+        <parameter property="code" jdbcType="INTEGER" mode="OUT"/>
+        <parameter property="info" jdbcType="VARCHAR" mode="OUT"/>
+        <parameter property="userid" jdbcType="INTEGER" mode="IN"/>
+    </parameterMap>
+    <resultMap id="userinfo" type="com.tanghui.model.User">
+        <result column="id" property="id"></result>
+        <result column="name" property="name"></result>
+        <result column="pwd" property="pwd"></result>
+    </resultMap>
+    <select id="queryUser" parameterMap="query" statementType="CALLABLE" resultMap="userinfo">
+        CALL queryuser(?,?,?)
+    </select>
+
+    <parameterMap type="map" id="deleteuser">
+        <parameter property="code" jdbcType="INTEGER" mode="OUT"/>
+        <parameter property="info" jdbcType="VARCHAR" mode="OUT"/>
+        <parameter property="userid" jdbcType="INTEGER" mode="IN"/>
+    </parameterMap>
+    <delete id="deleteUser" parameterMap="deleteuser" statementType="CALLABLE">
+        CALL deleteuser(?,?,?)
+    </delete>
+
+    <parameterMap type="map" id="updateuser">
+        <parameter property="code" jdbcType="INTEGER" mode="OUT"/>
+        <parameter property="info" jdbcType="VARCHAR" mode="OUT"/>
+        <parameter property="userid" jdbcType="INTEGER" mode="IN"/>
+        <parameter property="username" jdbcType="VARCHAR" mode="IN"/>
+        <parameter property="password" jdbcType="VARCHAR" mode="IN"/>
+    </parameterMap>
+    <insert id="updateUser" parameterMap="updateuser" statementType="CALLABLE">
+        CALL updateuser(?,?,?,?,?)
+    </insert>
 </mapper>
