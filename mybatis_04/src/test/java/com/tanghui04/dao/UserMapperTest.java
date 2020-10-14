@@ -6,7 +6,9 @@ import com.tanghui04.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 唐煇
@@ -19,10 +21,12 @@ public class UserMapperTest {
         InitLogRecord.initLog();
         //获取SqlSession
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-
         // 执行Sql
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        List<UserModel> users = userMapper.getUserList();
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("startIndex", 0);
+        map.put("pageSize", 2);
+        List<UserModel> users = userMapper.getUserByLimit(map);
         for (UserModel user : users) {
             System.out.println(user);
         }

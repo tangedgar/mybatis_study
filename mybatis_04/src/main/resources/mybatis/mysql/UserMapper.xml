@@ -11,4 +11,7 @@
     <select id="getUserList" resultMap="userModel">
         select * from user;
     </select>
+    <select id="getUserByLimit" parameterType="map" resultType="com.tanghui04.model.UserModel">
+        select * from user limit #{startIndex},#{pageSize};
+    </select>
 </mapper>
